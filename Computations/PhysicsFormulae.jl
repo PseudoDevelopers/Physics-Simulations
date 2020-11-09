@@ -6,6 +6,7 @@ using .Initial
 
 const G = 6.67408e-11
 
+# Calcualte the difference in velocities of two nodes due to gravitational force
 function acceleration(node1, node2)
     # First we calculate the distance
     displacement = node1.position - node2.position
@@ -17,6 +18,7 @@ function acceleration(node1, node2)
     return dv
 end
 
+# Calcualte the velocities of two nodes after collusion
 function bounce(node1, node2)
     m₁, m₂ = node1.mass, node2.mass
     v₁, v₂ = node1.velocity, node2.velocity
@@ -30,7 +32,18 @@ function bounce(node1, node2)
     return vf₁, vf₂
 end
 
+# Calculate the combined velocity of two nodes after collusion
+function combinedVelocity(node1, node2)
+    m₁, m₂ = node1.mass, node2.mass
+    v₁, v₂ = node1.velocity, node2.velocity
+
+    vf = (m₁ ⋅ v₁ + m₂ ⋅ v₂) / (m₁ + m₂)
+
+    return vf
+end
+
+
 square(n) = n^2
 
-export acceleration
+export acceleration, bounce, combinedVelocity
 end
