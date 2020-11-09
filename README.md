@@ -5,7 +5,7 @@ There are two main directories:
 - [Computations](/Computations) contain all the code which performs all the computations and save data in database.
 - [Visualizer](/Visualizer) Use the data stored in database and visualize it.
 ## Formulae used:
-- Newton gravitation law ![](Images/Formulae/gravitational-law.svg)<!-- https://render.githubusercontent.com/render/math?math=G\frac{m_1m_2}{r} -->
+- Newton gravitation law ![](Images/Formulae/gravitational-law.svg)<!-- https://render.githubusercontent.com/render/math?math=G\frac{m_1m_2}{r^2} -->
 - Newton second law of motion ![](Images/Formulae/newton-second-law.svg) <!-- https://render.githubusercontent.com/render/math?math=F=ma -->
 - Elastic collusion 
   - ![](Images/Formulae/ellastic-collusion-v1.svg)<!-- https://render.githubusercontent.com/render/math?math=v_1=\frac{m_1-m_2}{m_2%2Bm_1}u_1%2B\frac{2m_2}{m_2%2Bm_1}u_2 -->
