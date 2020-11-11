@@ -14,9 +14,7 @@ function calculateFrame(nodes)
     totalNodes = size(nodes)[1]
     
     calculateAllAccelerations(nodes, totalNodes)
-    for i in 1:totalNodes
-        nodes[i].position += nodes[i].velocity .* tick
-    end
+    moveNodes(nodes, totalNodes)
 end
 
 
@@ -27,6 +25,14 @@ function calculateAllAccelerations(nodes, totalNodes)
         end
         dv = acceleration(nodes[i], nodes[j])
         nodes[i].velocity += dv
+
+        collideIfColliding(nodes[i], nodes[j])
+    end
+end
+
+function moveNodes(nodes, totalNodes)
+    for i in 1:totalNodes
+        nodes[i].position += nodes[i].velocity .* tick
     end
 end
 

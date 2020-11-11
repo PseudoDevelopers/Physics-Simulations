@@ -22,7 +22,7 @@ end
 function bounce(node1, node2)
     m₁, m₂ = node1.mass, node2.mass
     v₁, v₂ = node1.velocity, node2.velocity
-    
+
     vf₁ = v₁ .* ((m₁ - m₂) / (m₂ + m₁))
     vf₁ += v₂ .* ((2 * m₂) / (m₂ + m₁))
 
@@ -37,13 +37,29 @@ function combinedVelocity(node1, node2)
     m₁, m₂ = node1.mass, node2.mass
     v₁, v₂ = node1.velocity, node2.velocity
 
-    vf = (m₁ ⋅ v₁ + m₂ ⋅ v₂) / (m₁ + m₂)
+    vf = (m₁ .* v₁ + m₂ .* v₂) / (m₁ + m₂)
 
     return vf
+end
+
+function collideIfColliding(node1, node2)
+    p₁, p₂ = node1.position, node2.position
+    r₁, r₂ = node1.radius, node2.radius
+
+    minDistanceForCollusion = r₁ + r₂
+    distanceBetweenNodes = sum(square.(p₁ - p₂))
+
+    if distanceBetweenNodes <= minDistanceForCollusion
+        if onCollusion == "bounce"
+            bounce(node1, node2)
+        else
+            combinedVelocity(node1, node2)
+        end
+    end
 end
 
 
 square(n) = n^2
 
-export acceleration, bounce, combinedVelocity
+export acceleration, bounce, combinedVelocity, collideIfColliding
 end

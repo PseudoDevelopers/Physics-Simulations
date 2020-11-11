@@ -2,6 +2,7 @@ module Node
 
 mutable struct node
     mass
+    radius
     position
     velocity
 end
