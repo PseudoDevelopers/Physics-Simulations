@@ -1,7 +1,11 @@
+@time begin
+
 include("./Initial.jl")
 using .Initial
 include("./Frame.jl")
 using .Frame
+include("./DB.jl")
+using .DB
 
 
 time = tick
@@ -12,6 +16,7 @@ function startCalculations()
     for i in 2:totalTicks
         calculateFrame(nodes)
         # push!(frames, frame(i, deepcopy(nodes)))
+        insertToDB(deepcopy(nodes))
 
         println("$i frame(s) calculated.")
     end
@@ -20,4 +25,7 @@ function startCalculations()
 end
 
 
+connectToDB()
 startCalculations()
+
+end

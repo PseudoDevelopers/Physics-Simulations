@@ -3,8 +3,10 @@ module Initial
 include("./Node.jl")
 using .Node
 
+const collectionName = "animation"  # Collection name who will store data in DB
+
 const tick = 0.1        # Single time tick (Seconds)
-const totalTicks = 864000   # Total calculation frams
+const totalTicks = 10   # Total frames to calculate
 # framesPerSecond = 1
 
 const onCollusion = "bounce"
