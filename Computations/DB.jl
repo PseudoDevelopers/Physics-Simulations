@@ -11,23 +11,20 @@ collection = nothing
 
 
 function insertToDB(data)
-    json = "["
-    for obj in data
+    json = Array{Mongoc.BSON,1}(undef, length(data))
+
+    for (i, obj) in enumerate(data)
         mass, radius, position, velocity = obj.mass, obj.radius, obj.position, obj.velocity
-        
-        json *= """
+
+        json[i] = Mongoc.BSON("""{
             "mass":  $mass,
             "raduis": $radius,
             "position": $position,
             "velocity": $velocity
-        """
+        }""")
     end
 
-    json *= "]"
-
-    document = Mongoc.BSON()
-    document["nodes"] = json
-    push!(collection, document)
+    append!(collection, json)
 end
 
 function connectToDB()
