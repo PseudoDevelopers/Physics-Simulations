@@ -13,15 +13,14 @@ const frames = [frame(1, deepcopy(nodes))]
 
 
 function startCalculations()
+    insertToDB(deepcopy(nodes), 1)
     for i in 2:totalTicks
         calculateFrame(nodes)
         # push!(frames, frame(i, deepcopy(nodes)))
-        insertToDB(deepcopy(nodes))
+        insertToDB(deepcopy(nodes), i)
 
-        println("$i frame(s) calculated.")
+        println("$i frames calculated")
     end
-
-    # println(frames)
 end
 
 
